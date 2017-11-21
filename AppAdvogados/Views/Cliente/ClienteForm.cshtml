@@ -1,0 +1,27 @@
+﻿@model AppAdvogados.ViewModels.ClienteFormViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Cliente"))
+{
+    @Html.HiddenFor(m => m.Cliente.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cliente.Nome)
+        @Html.TextBoxFor(m => m.Cliente.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Cliente.Nome)
+    </div>
+    <div class="form-group cpf-mask">
+        @Html.LabelFor(m => m.Cliente.CPF)
+        @Html.TextBoxFor(m => m.Cliente.CPF, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Cliente.CPF)
+       </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cliente.Idade)
+        @Html.TextBoxFor(m => m.Cliente.Idade, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Cliente.Idade)
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

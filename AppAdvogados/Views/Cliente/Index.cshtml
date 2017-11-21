@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AppAdvogados.Models.Cliente>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clientes</h2>
+<p>
+    @Html.ActionLink("Novo Cliente", "New", null, new { @class = "btn btn-primary" })
+</p>
+@if (!Model.Any())
+{
+    <p>Não temos nenhum cliente ainda.</p>
+}
+else
+{   
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Idade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@cliente.Nome, "Edit", new { cliente.Id })</td>
+                    <td>@cliente.CPF</td>
+                    <td>@cliente.Idade</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

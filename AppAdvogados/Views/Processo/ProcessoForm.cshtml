@@ -1,0 +1,27 @@
+﻿@model AppAdvogados.ViewModels.ProcessoFormViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Processo"))
+{
+    @Html.HiddenFor(m => m.Processo.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Processo.Nome)
+        @Html.TextBoxFor(m => m.Processo.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Processo.Nome)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Processo.Data)
+        @Html.TextBoxFor(m => m.Processo.Data, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Processo.Data)
+       </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Processo.Causa)
+        @Html.TextBoxFor(m => m.Processo.Causa, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Processo.Causa)
+    </div>
+<button type="submit" class="btn btn-primary">Salvar</button>
+}

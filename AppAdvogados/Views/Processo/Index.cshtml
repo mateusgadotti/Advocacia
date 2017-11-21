@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AppAdvogados.Models.Processo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Processo</h2>
+
+<p>
+    @Html.ActionLink("Novo Processo", "New", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (!Model.Any())
+{
+    <p>Não temos nenhum processo registrado.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data</th>
+                <th>Causa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var processo in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@processo.Nome, "Edit", new { processo.Id })</td>
+                    <td>@processo.Data</td>
+                    <td>@processo.Causa</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

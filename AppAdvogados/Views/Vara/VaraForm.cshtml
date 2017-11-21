@@ -1,0 +1,17 @@
+﻿@model AppAdvogados.ViewModels.VaraFormViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Vara"))
+{
+    @Html.HiddenFor(m => m.Vara.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vara.Nome)
+        @Html.TextBoxFor(m => m.Vara.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Vara.Nome)
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

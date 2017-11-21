@@ -1,0 +1,29 @@
+﻿@model AppAdvogados.ViewModels.AgendaFormViewModel
+@{
+    ViewBag.Title = Model.Titulo;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Agenda"))
+{
+    @Html.HiddenFor(m => m.Agenda.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Agenda.Tarefa)
+        @Html.TextBoxFor(m => m.Agenda.Tarefa, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Agenda.Tarefa)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Agenda.Data)
+        @Html.TextBoxFor(m => m.Agenda.Data, "{0: dd/MM/yyyy }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Agenda.Data)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Agenda.AdvogadoId)
+        @Html.DropDownListFor(m => m.Agenda.AdvogadoId,
+            new SelectList(Model.Advogado, "Id", "Nome"),
+            "Escolha", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Agenda.AdvogadoId)
+    </div>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}
