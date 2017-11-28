@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AppAdvogados.Controllers
 {
+    [Authorize]
     public class AdvogadoController : Controller
     {
         private ApplicationDbContext _context;
@@ -25,8 +26,23 @@ namespace AppAdvogados.Controllers
         // GET: Customers
         public ActionResult Index()
         {
+            var advogado = _context.Cliente.ToList();
+            if (User.IsInRole(RoleName.CanManageAdvogado))
+                return View(advogado);
+
+            return View("ReadOnlyIndex", advogado);
+        }
+
+        [Authorize(Roles = RoleName.CanManageAdvogado)]
+        public ActionResult New()
+        {
             var advogado = _context.Advogado.ToList();
-            return View(advogado);
+            var viewModel = new AdvogadoFormViewModel
+            {
+                Advogado = new Advogado()
+            };
+
+            return View("AdvogadoForm", viewModel);
         }
 
         public ActionResult Details(int id)
@@ -37,18 +53,6 @@ namespace AppAdvogados.Controllers
                 return HttpNotFound();
 
             return View(advogado);
-        }
-
-        public ActionResult New()
-        {
-
-            var viewModel = new AdvogadoFormViewModel {
-
-                Advogado = new Advogado()
-
-            };
-
-            return View("AdvogadoForm", viewModel);
         }
 
         [HttpPost] // só será acessada com POST

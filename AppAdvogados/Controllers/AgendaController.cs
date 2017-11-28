@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace AppAdvogados.Controllers
 {
+    [Authorize]
     public class AgendaController : Controller
     {
 
@@ -26,6 +27,7 @@ namespace AppAdvogados.Controllers
         }
 
         // GET: Customers
+        [Authorize]
         public ActionResult Index()
         {
             var agenda = _context.Agenda.Include(c => c.Advogado).ToList();

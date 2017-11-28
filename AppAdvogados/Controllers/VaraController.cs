@@ -8,6 +8,7 @@ using AppAdvogados.ViewModels;
 
 namespace AppAdvogados.Controllers
 {
+    [Authorize]
     public class VaraController : Controller
     {
 
@@ -24,6 +25,7 @@ namespace AppAdvogados.Controllers
         }
 
         // GET: Customers
+        [Authorize]
         public ActionResult Index()
         {
             var vara = _context.Vara.ToList();

@@ -86,3 +86,4 @@ c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAd
 c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.pdb
 C:\Users\mateus.gadotti\Documents\Visual Studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.Migrations.Certo07_11.resources
 C:\Users\mateus.gadotti\Documents\Visual Studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.csproj.GenerateResource.Cache
+C:\Users\mateus.gadotti\Documents\Visual Studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.Migrations.createUsers.resources

@@ -6,8 +6,11 @@ using System.Web.Mvc;
 
 namespace AppAdvogados.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();

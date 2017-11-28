@@ -8,6 +8,7 @@ using AppAdvogados.ViewModels;
 
 namespace AppAdvogados.Controllers
 {
+    [Authorize]
     public class ProcessoController : Controller
     {
 
@@ -27,7 +28,22 @@ namespace AppAdvogados.Controllers
         public ActionResult Index()
         {
             var processo = _context.Processo.ToList();
-            return View(processo);
+            if (User.IsInRole(RoleName.CanManageProcesso))
+                return View(processo);
+
+            return View("ReadOnlyIndex", processo);
+        }
+
+        [Authorize(Roles = RoleName.CanManageProcesso)]
+        public ActionResult New()
+        {
+            var processo = _context.Processo.ToList();
+            var viewModel = new ProcessoFormViewModel
+            {
+                Processo = new Processo()
+            };
+
+            return View("ProcessoForm", viewModel);
         }
 
         public ActionResult Details(int id)
@@ -38,16 +54,6 @@ namespace AppAdvogados.Controllers
                 return HttpNotFound();
 
             return View(processo);
-        }
-
-        public ActionResult New()
-        {
-
-            var viewModel = new ProcessoFormViewModel {
-                Processo = new Processo()
-            };
-
-            return View("ProcessoForm", viewModel);
         }
 
         [HttpPost] // só será acessada com POST

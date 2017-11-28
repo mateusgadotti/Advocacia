@@ -9,6 +9,7 @@ using AppAdvogados.ViewModels;
 
 namespace AppAdvogados.Controllers
 {
+    [Authorize]
     public class ClienteController : Controller
     {
 
@@ -28,8 +29,24 @@ namespace AppAdvogados.Controllers
         public ActionResult Index()
         {
             var cliente = _context.Cliente.ToList();
-            return View(cliente);
+            if (User.IsInRole(RoleName.CanManageCliente))
+                return View(cliente);
+
+            return View("ReadOnlyIndex", cliente);
         }
+
+        [Authorize(Roles = RoleName.CanManageCliente)]
+        public ActionResult New()
+        {
+           var cliente = _context.Cliente.ToList();
+            var viewModel = new ClienteFormViewModel
+            {
+                Cliente = new Cliente()
+            };
+
+            return View("ClienteForm", viewModel);
+        }
+
 
         public ActionResult Details(int id)
         {
@@ -40,19 +57,6 @@ namespace AppAdvogados.Controllers
 
             return View(cliente);
         }
-
-        public ActionResult New()
-        {
-
-            var viewModel = new ClienteFormViewModel {
-
-                Cliente = new Cliente()
-
-            };
-
-            return View("ClienteForm", viewModel);
-        }
-
         [HttpPost] // só será acessada com POST
         public ActionResult Save(Cliente cliente) // recebemos um cliente
         {

@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201711072255357_Certo07_11.Designer.cs">
       <DependentUpon>201711072255357_Certo07_11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711282232462_createUsers.cs" />
+    <Compile Include="Migrations\201711282232462_createUsers.Designer.cs">
+      <DependentUpon>201711282232462_createUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advogado.cs" />
@@ -212,6 +216,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Processo.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Vara.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -299,10 +304,16 @@
     <Content Include="Views\Vara\VaraForm.cshtml" />
     <Content Include="Views\Vara\Details.cshtml" />
     <Content Include="Views\Vara\Index.cshtml" />
+    <Content Include="Views\Cliente\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Advogado\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Processo\ReadOnlyIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711072255357_Certo07_11.resx">
       <DependentUpon>201711072255357_Certo07_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711282232462_createUsers.resx">
+      <DependentUpon>201711282232462_createUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
