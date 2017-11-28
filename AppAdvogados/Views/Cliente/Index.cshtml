@@ -14,12 +14,13 @@
 }
 else
 {   
-    <table class="table table-bordered table-hover">
+    <table id="cliente" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Idade</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
@@ -29,8 +30,43 @@ else
                     <td>@Html.ActionLink(@cliente.Nome, "Edit", new { cliente.Id })</td>
                     <td>@cliente.CPF</td>
                     <td>@cliente.Idade</td>
+                    <td>
+                        <button data-client-id="@cliente.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#cliente").on("click",".js-delete",
+                function () {
+                    var button = $(this);
+                    var result = confirm("Tem certeza que quer remover este cliente?");
+                        
+                    if (result) {
+                        $.ajax({
+                            url: "/cliente/delete/" + button.attr("data-client-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }
+                        
+                    /*if (confirm("Tem certeza que quer remover este cliente?")) {
+                        $.ajax({
+                            url: "/customers/delete/" + button.attr("data-customer-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }*/
+                });
+        });
+    </script>
 }

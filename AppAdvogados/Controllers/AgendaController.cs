@@ -109,8 +109,19 @@ namespace AppAdvogados.Controllers
             };
 
             return View("AgendaForm", viewModel);
+        }
 
+        public ActionResult Delete(int id)
+        {
+            var agenda = _context.Agenda.SingleOrDefault(c => c.Id == id);
 
+            if (agenda == null)
+                return HttpNotFound();
+
+            _context.Agenda.Remove(agenda);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
         }
     }
 }

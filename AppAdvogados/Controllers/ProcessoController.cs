@@ -99,5 +99,18 @@ namespace AppAdvogados.Controllers
             return View("ProcessoForm", viewModel);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var processo = _context.Processo.SingleOrDefault(c => c.Id == id);
+
+            if (processo == null)
+                return HttpNotFound();
+
+            _context.Processo.Remove(processo);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
+
     }
 }

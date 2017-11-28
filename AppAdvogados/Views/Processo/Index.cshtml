@@ -16,12 +16,13 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="processso" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Data</th>
                 <th>Causa</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +32,43 @@ else
                     <td>@Html.ActionLink(@processo.Nome, "Edit", new { processo.Id })</td>
                     <td>@processo.Data</td>
                     <td>@processo.Causa</td>
+                    <td>
+                        <button data-processo-id="@processo.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+@section scripts
+{
+    <script>
+        $(processo).ready(function() {
+            $("#processo").on("click", ".js-delete",
+                function () {
+                    var button = $(this);
+                    var result = confirm("Tem certeza que quer remover este processo?");
+
+                    if (result) {
+                        $.ajax({
+                            url: "/processo/delete/" + button.attr("data-processo-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }
+
+                    /*if (confirm("Tem certeza que quer remover este cliente?")) {
+                        $.ajax({
+                            url: "/customers/delete/" + button.attr("data-customer-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }*/
+                });
+        });
+    </script>
 }

@@ -98,6 +98,18 @@ namespace AppAdvogados.Controllers
             return View("VaraForm", viewModel);
         }
 
+        public ActionResult Delete(int id)
+        {
+            var vara = _context.Vara.SingleOrDefault(c => c.Id == id);
+
+            if (vara == null)
+                return HttpNotFound();
+
+            _context.Vara.Remove(vara);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
 
     }
 }

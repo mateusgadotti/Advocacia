@@ -14,10 +14,12 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="advogado" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Advogado</th>
+                <th>CPF</th>
+                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
@@ -25,8 +27,45 @@ else
             {
                 <tr>
                     <td>@Html.ActionLink(@advogado.Nome, "Edit", new { advogado.Id })</td>
+                    <td>@advogado.CPF</td>
+                    <td>
+                        <button data-advogado-id="@advogado.Id" class="btn-link js-delete">Remover</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#advogado").on("click",".js-delete",
+                function () {
+                    var button = $(this);
+                    var result = confirm("Tem certeza que quer remover este cliente?");
+
+                    if (result) {
+                        $.ajax({
+                            url: "/advogado/delete/" + button.attr("data-advogado-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }
+
+                    /*if (confirm("Tem certeza que quer remover este cliente?")) {
+                        $.ajax({
+                            url: "/customers/delete/" + button.attr("data-customer-id"),
+                            method: "GET",
+                            success: function() {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }*/
+                });
+        });
+    </script>
 }

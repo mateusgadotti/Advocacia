@@ -82,7 +82,6 @@ c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAd
 c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\bin\pt-br\Microsoft.Owin.Security.Twitter.resources.dll
 c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\bin\pt-br\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.csprojResolveAssemblyReference.cache
-c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.csproj.CoreCompileInputs.cache
 c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.dll
 c:\users\mateus.gadotti\documents\visual studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.pdb
 C:\Users\mateus.gadotti\Documents\Visual Studio 2017\Projects\AppAdvogados\AppAdvogados\obj\Debug\AppAdvogados.Migrations.Certo07_11.resources
