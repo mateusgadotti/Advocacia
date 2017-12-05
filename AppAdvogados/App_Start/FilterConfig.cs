@@ -11,8 +11,6 @@ namespace AppAdvogados
             // Adicionamos o filtro authorize
             // para toda a aplicação
             filters.Add(new AuthorizeAttribute());
-
-            //filters.Add(new HandleErrorAttribute());
         }
     }
 }

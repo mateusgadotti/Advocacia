@@ -8,6 +8,7 @@ using AppAdvogados.ViewModels;
 
 namespace AppAdvogados.Controllers
 {
+    [Authorize]
     public class ProcessoController : Controller
     {
 
