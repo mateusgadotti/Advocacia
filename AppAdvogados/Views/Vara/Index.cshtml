@@ -6,7 +6,7 @@
 
 <h2>Vara</h2>
 <p>
-    @Html.ActionLink("Novo Agendamento", "New", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nova Vara", "New", null, new { @class = "btn btn-primary" })
 </p>
 @if (!Model.Any())
 {
@@ -14,9 +14,6 @@
 }
 else
 {
-    <p>
-        @Html.ActionLink("Nova Vara", "New", null, new { @class = "btn btn-primary" })
-    </p>
     <table id="vara" class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -41,14 +38,14 @@ else
 {
     <script>
         $(document).ready(function() {
-            $("#agenda").on("click", ".js-delete",
+            $("#vara").on("click", ".js-delete",
                 function () {
                     var button = $(this);
-                    var result = confirm("Tem certeza que quer remover este cliente?");
+                    var result = confirm("Tem certeza que quer remover esta vara?");
 
                     if (result) {
                         $.ajax({
-                            url: "/agenda/delete/" + button.attr("data-agenda-id"),
+                            url: "/vara/delete/" + button.attr("data-vara-id"),
                             method: "GET",
                             success: function() {
                                 button.parents("tr").remove();

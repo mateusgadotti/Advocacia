@@ -24,7 +24,7 @@ else
             @foreach (var processo in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(@processo.Nome, "Edit", new { processo.Id })</td>
+                    <td>@processo.Nome</td>
                     <td>@processo.Data</td>
                     <td>@processo.Causa</td>
                 </tr>

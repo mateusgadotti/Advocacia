@@ -26,7 +26,7 @@ else
             @foreach (var agenda in Model)
             {
                 <tr>
-                    <td>@Html.ActionLink(@agenda.Tarefa, "Edit", new { agenda.Id })</td>
+                    <td>@agenda.Tarefa</td>
                     <td>@agenda.Data</td>
                     <td>@agenda.Advogado.Nome</td>
                     <td>
