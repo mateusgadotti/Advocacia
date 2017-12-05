@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AppAdvogados.Models.Agenda>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agenda</h2>
+
+@if (!Model.Any())
+{
+    <p>Não temos nada agendado ainda.</p>
+}
+else
+{
+
+    <table id="agenda" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Tarefa</th>
+                <th>Data</th>
+                <th>Advogado</th>
+                <th>Remover</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var agenda in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@agenda.Tarefa, "Edit", new { agenda.Id })</td>
+                    <td>@agenda.Data</td>
+                    <td>@agenda.Advogado.Nome</td>
+                    <td>
+                        <button data-agenda-id="@agenda.Id" class="btn-link js-delete">Remover</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

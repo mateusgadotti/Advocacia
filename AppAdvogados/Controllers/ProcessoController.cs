@@ -27,7 +27,10 @@ namespace AppAdvogados.Controllers
         public ActionResult Index()
         {
             var processo = _context.Processo.ToList();
-            return View(processo);
+            if (User.IsInRole("CanManageAdemir"))
+                return View(processo);
+
+            return View("ReadOnlyIndex", processo);
         }
 
         public ActionResult Details(int id)
@@ -40,6 +43,7 @@ namespace AppAdvogados.Controllers
             return View(processo);
         }
 
+        [Authorize(Roles = "CanManageAdemir")]
         public ActionResult New()
         {
 
@@ -84,6 +88,7 @@ namespace AppAdvogados.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "CanManageAdemir")]
         public ActionResult Edit(int id)
         {
             var processo = _context.Processo.SingleOrDefault(c => c.Id == id);
@@ -99,6 +104,7 @@ namespace AppAdvogados.Controllers
             return View("ProcessoForm", viewModel);
         }
 
+        [Authorize(Roles = "CanManageAdemir")]
         public ActionResult Delete(int id)
         {
             var processo = _context.Processo.SingleOrDefault(c => c.Id == id);

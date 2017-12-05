@@ -29,7 +29,10 @@ namespace AppAdvogados.Controllers
         public ActionResult Index()
         {
             var agenda = _context.Agenda.Include(c => c.Advogado).ToList();
-            return View(agenda);
+            if (User.IsInRole("CanManageAdemir"))
+                return View(agenda);
+
+            return View("ReadOnlyIndex", agenda);
         }
 
         public ActionResult Details(int id)
@@ -42,7 +45,7 @@ namespace AppAdvogados.Controllers
 
             return View(agenda);
         }
-
+        [Authorize(Roles = "CanManageAdemir")]
         public ActionResult New()
         {
             var advogado = _context.Advogado.ToList();
@@ -94,7 +97,7 @@ namespace AppAdvogados.Controllers
 
 
         }
-
+        [Authorize(Roles = "CanManageAdemir")]
         public ActionResult Edit(int id)
         {
             var agenda = _context.Agenda.Include(c => c.Advogado).SingleOrDefault(c => c.Id == id);
@@ -110,7 +113,7 @@ namespace AppAdvogados.Controllers
 
             return View("AgendaForm", viewModel);
         }
-
+        [Authorize(Roles = "CanManageAdemir")]
         public ActionResult Delete(int id)
         {
             var agenda = _context.Agenda.SingleOrDefault(c => c.Id == id);

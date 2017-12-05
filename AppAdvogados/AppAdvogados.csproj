@@ -299,6 +299,8 @@
     <Content Include="Views\Vara\VaraForm.cshtml" />
     <Content Include="Views\Vara\Details.cshtml" />
     <Content Include="Views\Vara\Index.cshtml" />
+    <Content Include="Views\Processo\ReadOnlyIndex.cshtml" />
+    <Content Include="Views\Agenda\ReadOnlyIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711072255357_Certo07_11.resx">
